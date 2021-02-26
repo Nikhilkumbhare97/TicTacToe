@@ -18,7 +18,17 @@ class TicTacToe {
 		return userInput.next().toUpperCase().charAt(0);
 	}
 
-   public static void main(String[] args){
+	static void showBoard(){
+
+		System.out.println( "    " +board[1]+ "   | "+ board[2]+ "  | " + board[3]+ "     ");
+		System.out.println(" ------------------------ ");
+		System.out.println( "    " +board[4]+ "   | "+ board[5]+ "  | " + board[6]+ "     ");
+		System.out.println(" ------------------------ ");
+		System.out.println( "    " +board[7]+ "   | "+ board[8]+ "  | " + board[9]+ "     ");
+	}
+
+
+	public static void main(String[] args){
 
 		System.out.println("Welcome to TicTacToeGame");
 
@@ -29,7 +39,8 @@ class TicTacToe {
 		System.out.println("User Letter: " +userLetter);
 		System.out.println("Computer Letter: " +computerLetter);
 
-      TicTacToe ticTacToeGame = new TicTacToe();
-      ticTacToeGame.createboard();
+		TicTacToe ticTacToeGame = new TicTacToe();
+		ticTacToeGame.createboard();
+		showBoard();
 	}
 }
