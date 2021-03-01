@@ -7,6 +7,7 @@ public class TicTacToe {
 	static char computerLetter;
 	static char[] board = new char[10];
 	static int count;
+	static int index;
 	static int chance;
 
 	static ArrayList<int[]> checkCondition = new ArrayList<>();
@@ -140,25 +141,60 @@ public class TicTacToe {
 					showBoard();
 				}else {
 					System.out.println("Computer Turn");
-//					computerTurn();
-//					showBoard();
+					computerTurn();
+					showBoard();
 				}
 				count++;
 			}
 		}
 	}
 
-	public static void main(String[] args){
+	public static void computerTurn() {
 
-		System.out.println("Welcome to TicTacToeGame");
+		if (compWinning()) {
+		}
+	}
 
-		TicTacToe ticTacToeGame = new TicTacToe();
-		conditionsForWin();
-		ticTacToeGame.createBoard();
-		chooseLetter();
-      System.out.println("Computer Letter: " +computerLetter);
-		showBoard();
-		toss();
-		turn();
+	public static boolean checkCond(char letter) {
+
+		for (int index = 0; index < checkCondition.size(); index++) {
+			int sum = 0;
+			for (int j = 0; j < checkCondition.get(index).length; j++) {
+				if (board[checkCondition.get(index)[j]] == letter) {
+					sum = sum + 1;
+					if (sum == 2) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean compWinning() {
+
+		if (checkCond(computerLetter)) {
+			for (int l = 0; l < checkCondition.get(index).length; l++) {
+				if (board[checkCondition.get(index)[l]] == ' ') {
+					board[checkCondition.get(index)[l]] = computerLetter;
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+
+		public static void main(String args[]) {
+
+			System.out.println("Welcome to TicTacToeGame");
+
+			TicTacToe ticTacToeGame = new TicTacToe();
+			conditionsForWin();
+			ticTacToeGame.createBoard();
+			chooseLetter();
+   	   System.out.println("Computer Letter: " +computerLetter);
+			showBoard();
+			toss();
+			turn();
 	}
 }
