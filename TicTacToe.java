@@ -6,6 +6,31 @@ public class TicTacToe {
 	static char userLetter;
 	static char computerLetter;
 	static char[] board = new char[10];
+	static int count;
+	static int chance;
+
+	static ArrayList<int[]> checkCondition = new ArrayList<>();
+
+	public static void conditionsForWin() {
+
+		int[] row1 = {1, 2, 3};
+		int[] row2 = {4, 5, 6};
+		int[] row3 = {7, 8, 9};
+		int[] col1 = {1, 4, 7};
+		int[] col2 = {2, 5, 8};
+		int[] col3 = {3, 6, 9};
+		int[] diag1 = {1, 5, 9};
+		int[] diag2 = {3, 5, 7};
+
+		checkCondition.add(row1);
+		checkCondition.add(row2);
+		checkCondition.add(row3);
+		checkCondition.add(col1);
+		checkCondition.add(col2);
+		checkCondition.add(col3);
+		checkCondition.add(diag1);
+		checkCondition.add(diag2);
+	}
 
 	public char[] createBoard() {
 
@@ -57,12 +82,69 @@ public class TicTacToe {
 		int chance =(int) (Math.random() * 2);
 		if (chance == check) {
 			System.out.println("You Won the Toss");
-			System.out.println("Your Turn");
-			makeMove();
-			showBoard();
+			count = 0;
 		}else {
 			System.out.println("You Lose the Toss");
-			System.out.println("Computer Turn");
+			count = 1;
+		}
+	}
+
+
+	public static char winCheck() {
+
+		final int WIN_CONDITION = 3;
+
+		for (int index = 0; index < checkCondition.size(); index++) {
+			int addX = 0;
+			int addO = 0;
+			for (int i = 0; i < checkCondition.get(index).length; i++) {
+				if (board[checkCondition.get(index)[i]] == 'X') {
+					addX += 1;
+					if (addX == WIN_CONDITION) {
+						return 'X';
+					}
+				}else if (board[checkCondition.get(index)[i]] == 'O') {
+					addO += 1;
+					if (addO == WIN_CONDITION) {
+						return 'O';
+					}
+				}
+			}
+		}
+		return ' ';
+	}
+
+	public static boolean tie() {
+
+		for (int k = 1; k < 10; k++) {
+			if (board[k] == ' ') {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static void turn() {
+
+		while (true) {
+			if (winCheck() == 'X' || winCheck() == 'O') {
+				System.out.println((userLetter == winCheck()) ? "You Win" : "Computer Wins");
+				break;
+			}else if (tie()) {
+				System.out.println("It's a tie");
+				break;
+			}else {
+				if (count%2 == chance) {
+					System.out.println("Your Turn");
+					makeMove();
+					showBoard();
+				}else {
+					System.out.println("Computer Turn");
+//					computerTurn();
+//					showBoard();
+				}
+				count++;
+			}
 		}
 	}
 
@@ -71,10 +153,12 @@ public class TicTacToe {
 		System.out.println("Welcome to TicTacToeGame");
 
 		TicTacToe ticTacToeGame = new TicTacToe();
+		conditionsForWin();
 		ticTacToeGame.createBoard();
 		chooseLetter();
       System.out.println("Computer Letter: " +computerLetter);
 		showBoard();
 		toss();
+		turn();
 	}
 }
