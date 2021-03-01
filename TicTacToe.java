@@ -184,7 +184,21 @@ public class TicTacToe {
 		return false;
 	}
 
-		public static void main(String args[]) {
+	public static boolean block() {
+
+		if (checkCond(userLetter)) {
+			for (int l = 0; l < checkCondition.get(index).length; l++) {
+				if (board[checkCondition.get(index)[l]] == ' ') {
+					board[checkCondition.get(index)[l]] = computerLetter;
+						checkCondition.remove(index);
+							return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static void main(String args[]) {
 
 			System.out.println("Welcome to TicTacToeGame");
 
