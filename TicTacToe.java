@@ -44,8 +44,25 @@ public class TicTacToe {
 		int location = userInput.nextInt();
 		if (board[location] != ' ') {
 			System.out.println("Position Already Occupied");
+			makeMove();
 		}else {
 			board[location] = userLetter;
+		}
+	}
+
+	public static void toss() {
+
+		System.out.println("Toss Time - Press 0 for Head And 1 for Tail: ");
+		int check = userInput.nextInt();
+		int chance =(int) (Math.random() * 2);
+		if (chance == check) {
+			System.out.println("You Won the Toss");
+			System.out.println("Your Turn");
+			makeMove();
+			showBoard();
+		}else {
+			System.out.println("You Lose the Toss");
+			System.out.println("Computer Turn");
 		}
 	}
 
@@ -58,7 +75,6 @@ public class TicTacToe {
 		chooseLetter();
       System.out.println("Computer Letter: " +computerLetter);
 		showBoard();
-		makeMove();
-		showBoard();
+		toss();
 	}
 }
