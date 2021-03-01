@@ -44,6 +44,8 @@ public class TicTacToe {
 		int location = userInput.nextInt();
 		if (board[location] != ' ') {
 			System.out.println("Position Already Occupied");
+		}else {
+			board[location] = userLetter;
 		}
 	}
 
@@ -57,5 +59,6 @@ public class TicTacToe {
       System.out.println("Computer Letter: " +computerLetter);
 		showBoard();
 		makeMove();
+		showBoard();
 	}
 }
