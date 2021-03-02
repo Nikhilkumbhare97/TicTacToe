@@ -231,6 +231,9 @@ public class TicTacToe {
 
 	public static void execute() {
 
+		String check = "Y";
+		while(check.equals("Y")) {
+
 			TicTacToe ticTacToeGame = new TicTacToe();
 			conditionsForWin();
 			ticTacToeGame.createBoard();
@@ -239,6 +242,10 @@ public class TicTacToe {
 			showBoard();
 			toss();
 			turn();
+			System.out.println("You Want To Play Again??");
+			check = userInput.next().toUpperCase();
+		}
+		System.out.println("OK Thanks For Playing");
 	}
 
 	public static void main(String[] args) {
