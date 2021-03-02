@@ -229,10 +229,7 @@ public class TicTacToe {
 		}
 	}
 
-
-	public static void main(String args[]) {
-
-			System.out.println("Welcome to TicTacToeGame");
+	public static void execute() {
 
 			TicTacToe ticTacToeGame = new TicTacToe();
 			conditionsForWin();
@@ -242,5 +239,16 @@ public class TicTacToe {
 			showBoard();
 			toss();
 			turn();
+	}
+
+	public static void main(String[] args) {
+		try {
+			System.out.println("Welcome to TicTacToeGame");
+			execute();
+		}catch(Exception e) {
+			System.out.println("Invalid Inputs Play Again");
+			execute();
+		}
+
 	}
 }
