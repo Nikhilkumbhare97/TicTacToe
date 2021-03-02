@@ -215,7 +215,7 @@ public class TicTacToe {
 	}
 
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 			System.out.println("Welcome to TicTacToeGame");
 
@@ -228,4 +228,5 @@ public class TicTacToe {
 			toss();
 			turn();
 	}
+
 }
